@@ -7,6 +7,12 @@ package binarytree;
 public class BinaryTree {
 
     Node root;
+    public int numberOfNodes;
+    
+    public BinaryTree()
+            {
+               numberOfNodes = 0; 
+            }
     
     public static void main(String[] args) 
     {
@@ -30,7 +36,8 @@ public class BinaryTree {
         //tree.traversePreOrder();
         //tree.traversePostOrder();
         tree.count();
-        tree.find(12);
+        tree.find(81);
+        tree.clear();
         
         
     }
@@ -43,6 +50,7 @@ public class BinaryTree {
             root = nodeToAdd;
         
         addNode(root, nodeToAdd);
+        numberOfNodes++;
     }   
         private void addNode (Node node, Node nodeToAdd)
         {
@@ -213,6 +221,7 @@ public class BinaryTree {
             {
                 nodeToBeDeleted.parent.leftChild = nodeToBeDeleted.rightChild;
             }
+            numberOfNodes--;
         }
         else if(nodeToBeDeleted.parent.rightChild == nodeToBeDeleted)
         {
@@ -224,6 +233,7 @@ public class BinaryTree {
             {
                 nodeToBeDeleted.parent.rightChild = nodeToBeDeleted.rightChild;
             }
+             numberOfNodes--;
         }
      }
      
@@ -251,6 +261,7 @@ public class BinaryTree {
             {
                 nodeToBeDeleted.parent.rightChild = minNode;
             }
+            numberOfNodes--;
          }
      }
      
@@ -274,8 +285,9 @@ public class BinaryTree {
                  }
                  else if(nodeToBeDeleted.parent.rightChild == nodeToBeDeleted)
                  {
-                     nodeToBeDeleted.parent.rightChild = null;        
+                     nodeToBeDeleted.parent.rightChild = null;
                  }
+                 numberOfNodes--;
              }
      }
      
@@ -295,6 +307,7 @@ public class BinaryTree {
          
          if(search.data == node.data)
          {
+             System.out.println("Node you are refering to for search or deletion is: " + node.data);
              return search;
          }
          else
@@ -305,22 +318,21 @@ public class BinaryTree {
              {
                  returnNode = findNode(search.rightChild, node);
              }
+             //System.out.println(returnNode);
              return returnNode;
          }
      }
       
       public int count() {
-        return(count(root));
+
+        System.out.println("number of nodes in the Binary Tree are: " + numberOfNodes);
+        return numberOfNodes;
       }
 
-      private int count(Node node) {
-        if (node == null)
-        { 
-            return(0);
-        }
-        else
+      public void clear(){
+        if(numberOfNodes > 0)
         {
-            return(count(node.leftChild) + 1 + count(node.rightChild));
+            root = null;
         }
-      }
+    }
 }
