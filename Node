@@ -11,10 +11,6 @@ public class Node
     Node rightChild;
     Node parent;
 
-        public Node()
-        {
-
-        }
 
         public Node(int data)
         {
